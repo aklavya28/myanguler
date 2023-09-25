@@ -1,0 +1,39 @@
+<p>posts works!</p>
+
+<div class="container">
+    <form [formGroup]="form" (ngSubmit)="createPost()" class="post_form">
+        <label for="">Title</label>
+        <input type="text" class="form-control" formControlName="title">
+        <div
+        *ngIf="form.get('body')?.touched && form.get('title')?.invalid"
+        class="alert mt-2 text-danger">
+            <div *ngIf="form.get('title')?.errors?.['required']">Title is required </div>
+        </div>
+        <label for="">Content</label>
+        <input type="text" class="form-control" formControlName="body">
+        <div
+        *ngIf="form.get('body')?.touched && form.get('body')?.invalid"
+        class="alert mt-2 text-danger">
+            <div *ngIf="form.get('body')?.errors?.['required']">Content is required </div>
+            <div *ngIf="form.get('body')?.errors?.['minlength']">minlength for content is </div>
+            <div *ngIf="form.get('body')?.errors?.['minlength']">minlength for content is </div>
+        </div>
+
+        <button class="btn btn-info " [ngClass]="{'disabled':active }" type="submit"> Submit</button>
+
+    </form>
+    <div *ngIf="data">
+        <div class="card mt-2" *ngFor="let post of data">
+            <div class="card-header">
+                <h5 class="card-title">{{post.title}}</h5>
+            </div>
+            <div class="card-body">
+
+                <p class="card-text">{{post.body}}</p>
+                <a  class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>

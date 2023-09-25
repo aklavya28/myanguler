@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1>Sign Up df</h1>
+            {{form.value | json}}
+            <div *ngIf="form?.errors?.['invalidlogin']" class="alert alert-danger">Wrong Username Or Password</div>
+            <form  [formGroup]="form" (ngSubmit)="siginSubmit()">
+                <div class="form-group">
+                    <label for="userinput">User Name</label>
+                    <input type="text" name="" id="userinput"
+                    formControlName="username"
+
+                    class="form-control">
+                    {{ username?.invalid | json }}
+                    <div class="mt-2 alert alert-danger" *ngIf="username?.touched && username?.invalid">
+                        <p *ngIf="username?.errors?.['required']">Username is required</p>
+                        <p *ngIf="username?.errors?.['minlength']">minmum lenth for user name is
+                            {{username?.errors?.['minlength']['requiredLength']}}
+                        </p>
+                        <p *ngIf="username?.errors?.['cannotContainSpace']">
+                            Do Not Use space
+                        </p>
+                        <p *ngIf="username?.errors?.['unique']" class="taken">Username is already taken
+                            {{username?.errors?.['unique']}}
+
+                        </p>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email"
+
+                        class="form-control"
+                        formControlName="email"
+                    >
+                    <div
+                    *ngIf="form.get('email')?.touched && form.get('email')?.invalid"
+                    class="alert mt-2 alert-danger">
+                        <p *ngIf="form.get('email')?.errors?.['required']">Email is required </p>
+                        <p *ngIf="form.get('email')?.errors?.['email']">Please enter vaild email</p>
+                    </div>
+                </div>
+
+                <div class="form-group mt-2">
+                    <label for="password">Password</label>
+                    <input type="password"
+                        formControlName="password"
+                    name="" id="userinput" class="form-control">
+                </div>
+                <input type="checkbox" value="1" formControlName="showpass" > Show password
+                <div *ngIf="form.value.showpass">{{form.value.password}}</div>
+                <br>
+                <button type="submit"  class="btn btn-info">Submit</button>
+                {{form.value | json}}
+            </form>
+
+        </div>
+    </div>
+</div>
+

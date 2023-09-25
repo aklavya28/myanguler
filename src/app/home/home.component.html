@@ -1,0 +1,41 @@
+<p>home works!</p>
+
+
+<ul *ngIf="cources">
+    <li *ngFor="let c of cources">
+        {{c}}
+    </li>
+
+
+</ul>
+<div>
+    <label for="">Add Course</label>
+    <input type="text" [(ngModel)] = "addcourse"(keyup.enter)="addCourse()">
+</div>
+<div>
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="viewMode == 'grid'"  (click)="viewMode = 'grid'">Grid View</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [class.active]="viewMode == 'list'"  (click)="viewMode = 'list'">List View</a>
+        </li>
+
+      </ul>
+</div>
+<br>
+<div class="container" [ngSwitch]="viewMode">
+    <div *ngSwitchCase="'grid'" class="map_view"> Grid View</div>
+    <div *ngSwitchCase="'list'"  class="list_view"> List view</div>
+    <div *ngSwitchDefault class="list_view"> Other</div>
+</div>
+
+<div class="bootstrap_p">
+    <app-bootstarp-panel>
+        <ng-container class="heading"> <h2>The heading</h2></ng-container>
+        <ng-container class="body">
+            <h2>Body</h2>
+            <p>some text here ..</p>
+        </ng-container>
+    </app-bootstarp-panel>
+</div>
